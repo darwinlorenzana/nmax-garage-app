@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#163b2b">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="NMAX Garage App">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/icon-32.png">
+  <link rel="apple-touch-icon" href="icons/icon-180.png">
+  <title>NMAX Garage App</title>
+  <style>
+    html,body { margin:0; padding:0; width:100%; height:100%; background:#163b2b; overflow:hidden; }
+    iframe { display:block; width:100%; height:100%; border:0; background:#fff; }
+    #fallback { display:none; color:#fff; font-family:Arial,sans-serif; text-align:center; padding:32px; }
+    #fallback a { color:#fff; }
+  </style>
+</head>
+<body>
+  <iframe
+    id="garage"
+    title="NMAX Garage App"
+    src="https://script.google.com/macros/s/AKfycbzzng07TD64svTZPlViB8Oeq7laeY5G-y-pCFvteAzgvdek9HCS8cP0vrK6KB7NTLE/exec"
+    allow="notifications; clipboard-read; clipboard-write"
+    referrerpolicy="strict-origin-when-cross-origin">
+  </iframe>
+  <div id="fallback">
+    <h2>NMAX Garage App</h2>
+    <p>Unable to load the garage app.</p>
+    <p><a href="https://script.google.com/macros/s/AKfycbzzng07TD64svTZPlViB8Oeq7laeY5G-y-pCFvteAzgvdek9HCS8cP0vrK6KB7NTLE/exec">Open NMAX Garage App</a></p>
+  </div>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./sw.js').catch(function(){});
+    }
+    window.addEventListener('error', function() {
+      var f=document.getElementById('fallback');
+      if(f) f.style.display='block';
+    });
+  </script>
+</body>
+</html>
